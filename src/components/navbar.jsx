@@ -6,7 +6,6 @@ export default function Nav() {
       <div className="links flex gap-[5rem] justify-between">
         <Link href="/">Home</Link>
         <Link href="/about">About</Link>
-        <Link href="/write">Write</Link>
         <Link href="/posts">Posts</Link>
         <Link href="/about">Profile</Link>
         <Link href="/about">LogIn</Link>
