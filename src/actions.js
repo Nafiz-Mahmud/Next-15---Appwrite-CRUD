@@ -1,4 +1,5 @@
 "use server";
+import { unstable_cache } from "next/cache";
 import { Databases, ID } from "appwrite";
 import { client } from "./appwrite";
 import { revalidatePath } from "next/cache";
@@ -12,6 +13,21 @@ export const getPosts = async () => {
       "post", // collectionId
       [] // queries (optional)
     );
+
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getPostsWithCache = async () => {
+  try {
+    const databases = new Databases(client);
+    const result = await unstable_cache(
+      () => databases.listDocuments("crud", "post", []),
+      [],
+      { revalidate: 60 } // revailate the data after 60 seconds ( 1 minutes )
+    )();
 
     return result;
   } catch (error) {

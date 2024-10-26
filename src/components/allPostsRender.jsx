@@ -1,9 +1,10 @@
 import Link from "next/link";
-import { getPosts } from "@/actions";
+import { getPosts, getPostsWithCache } from "@/actions";
 import { deletePost } from "@/actions";
 import DeletePostStatus from "./deletePostStatus";
 export default async function AllPostRender() {
   const posts = await getPosts();
+  // const posts = await getPostsWithCache();
 
   return (
     <div className="all_posts_render">
